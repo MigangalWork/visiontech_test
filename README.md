@@ -6,7 +6,7 @@ This is a test. Since the required execution is quite simple, i focused on keepi
 ## Installation 
 
 Clone the repository
-git clone https://github.com/MigangalWork/LinkedInAPI
+git clone https://github.com/MigangalWork/visiontech_test
 
 You will need python 3.10 or higher.
 
