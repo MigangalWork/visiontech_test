@@ -13,3 +13,8 @@ You will need python 3.10 or higher.
 ## Usage
 
 To run this project, execute the main.py file, and it will print the required results.
+
+## Test
+To run the tests in a terminal execute:
+
+python -m unittest test.processes_test.TestProcesses
