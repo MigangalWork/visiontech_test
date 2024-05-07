@@ -51,9 +51,11 @@ class Processes:
         sort_data: bool = False,
     ) -> dict:
         """
-        This function creates a dict containing the grape id as key and the total planted area of this grape as value.
+        This function creates a dict containing the name of a field as key and a list of the related values of the field to group.
         In this case if any key is missing in the dicts we will stop the execution since missing grapes or areas will return false
-        data.
+        data, returning a empty dict instead.
+
+        If sorting in the inner list is required, the sort_data parameter must be set to True.
         """
         grouped_data: dict = dict()
         try:
@@ -81,7 +83,12 @@ class Processes:
             value_to_group="area",
         )
 
-        sum_areas: dict = {key: sum(areas) for key, areas in grouped_areas.items()}
+        try:
+            sum_areas: dict = {key: sum(areas) for key, areas in grouped_areas.items()}
+
+        except ValueError as e:
+            print(f'Area must be a number - {str(e)}')
+
         return sum_areas
 
     @classmethod
@@ -98,6 +105,7 @@ class Processes:
                     if grape["id"] == vineyard["grape_id"]
                 )
             )
+
             vineyard["manager_name"] = next(
                 (
                     manager["name"]
@@ -105,6 +113,7 @@ class Processes:
                     if manager["id"] == vineyard["manager_id"]
                 )
             )
+
             vineyard["vineyard_name"] = next(
                 (
                     vineyard_["name"]
